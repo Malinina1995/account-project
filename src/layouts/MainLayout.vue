@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="app-main-layout">
+        <Loader v-if="loading"/>
+        <div class="app-main-layout" v-else>
             <Navbar @toggleSidebar="isOpen = !isOpen"/>
             <Sidebar v-model="isOpen"/>
 
@@ -22,17 +23,35 @@
 <script>
     import Navbar from "../components/app/Navbar";
     import Sidebar from "../components/app/Sidebar";
+    import { mapGetters, mapActions } from 'vuex';
 
     export default {
         name: "MainLayout",
         data() {
             return {
-                isOpen: true
+                isOpen: true,
+                loading: true
             }
+        },
+        async mounted() {
+            if (!Object.keys(this.info).length) {
+                await this.fetchInfo()
+            }
+            this.loading = false
+        },
+        computed: {
+            ...mapGetters([
+                'info'
+            ])
         },
         components: {
             Navbar, Sidebar
         },
+        methods: {
+            ...mapActions([
+                'fetchInfo'
+            ])
+        }
     }
 </script>
 

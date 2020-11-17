@@ -16,7 +16,7 @@
                             data-target="dropdown"
                             ref="dropdown"
                     >
-                        USER NAME
+                        {{name}}
                         <i class="material-icons right">arrow_drop_down</i>
                     </a>
 
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
 
     export default {
         name: "Navbar",
@@ -60,7 +60,14 @@
                 this.date = new Date()
             }, 1000)
         },
-
+        computed: {
+            ...mapGetters([
+                'info'
+            ]),
+            name() {
+                return this.info.name
+            }
+        },
         methods: {
             ...mapActions([
                'logout'
