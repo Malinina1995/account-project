@@ -27,7 +27,6 @@ export default {
                     name
                 })
             } catch (e) {
-
                 commit('setError', e)
                 throw e
             }
