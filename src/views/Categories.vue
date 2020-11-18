@@ -12,7 +12,7 @@
                         :categories="categories"
                         :key="categories.length + updateCount"
                         @update="updateCategoryData"/>
-                <p class="center" v-else>Категорий пока нет, но вы можете добавить их :)</p>
+                <p class="center" v-else>Категорий пока нет, но вы можете создать их :)</p>
             </div>
         </section>
     </div>
